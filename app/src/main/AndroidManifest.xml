@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.intowow.mopubdemo">
+
+    <!-- (Option) `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` are only needed if you want the device to automatically send the user’s location for targeting.-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- BaseApplication for Intowow SDK integration, listen your application's ActivityLifecycle -->
+    <application
+        android:name="com.intowow.mopubdemo.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:debuggable="true">
+        <activity android:name=".MainActivity"
+                  android:label="@string/app_name"
+                  android:configChanges="orientation|screenSize"
+                  android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.intowow.mopubdemo.Activity.MediationCardCommonActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.intowow.mopubdemo.Activity.MediationNativeCommonActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.intowow.mopubdemo.Activity.MediationInterstitialCommonActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.intowow.mopubdemo.Activity.MediationRewardedVideoCommonActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+        <!-- for Mopub integration (Required if using MoPub for mediation) -->
+        <activity android:name="com.mopub.common.MoPubBrowser"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.mopub.mobileads.MoPubActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize"/>
+        <activity android:name="com.mopub.mobileads.MraidActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize"/>
+        <activity android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize"/>
+        <activity android:name="com.mopub.mobileads.RewardedMraidActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+
+        <!-- for Intowow SDK integration (Required if using Intowow SDK) -->
+        <meta-data
+            android:name="CRYSTAL_ID"
+            android:value="96ed40f7e4954874920d5211708194b1" />
+
+        <!--for Mopub integration (Required if using MoPub for mediation) -->
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>
