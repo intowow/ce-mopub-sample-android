@@ -9,6 +9,7 @@ import com.intowow.sdk.Ad;
 import com.intowow.sdk.AdError;
 import com.intowow.sdk.I2WAPI;
 import com.intowow.sdk.InterstitialAd;
+import com.intowow.sdk.RequestInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,13 +78,16 @@ public class CECustomEventInterstitial extends CustomEventInterstitial implement
 
         mInterstitialListener = customEventInterstitialListener;
 
-        mInterstitialAd = new InterstitialAd(context, placementId);
+        mInterstitialAd = new InterstitialAd(context);
 
         //	you can close the interstitial ad while user engaging the ad
         //
         mInterstitialAd.setAutoCloseWhenEngaged(mAutoCloseWhenEngaged);
         mInterstitialAd.setAdListener(this);
-        mInterstitialAd.loadAd(DEFAULT_TIMEOUT_MILLIS);
+        RequestInfo requestInfo = new RequestInfo();
+        requestInfo.setPlacement(placementId);
+        requestInfo.setTimeout(DEFAULT_TIMEOUT_MILLIS);
+        mInterstitialAd.loadAd(requestInfo);
     }
 
     @Override

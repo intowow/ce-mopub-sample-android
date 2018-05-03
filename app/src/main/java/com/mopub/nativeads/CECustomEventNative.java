@@ -12,6 +12,7 @@ import com.intowow.sdk.AdError;
 import com.intowow.sdk.AdListener;
 import com.intowow.sdk.I2WAPI;
 import com.intowow.sdk.NativeAd;
+import com.intowow.sdk.RequestInfo;
 import com.mopub.common.Preconditions;
 
 import org.json.JSONArray;
@@ -60,7 +61,7 @@ public class CECustomEventNative extends CustomEventNative {
         List<String> audienceTags = getAudienceTags(localExtras, serverExtras);
         I2WAPI.setAudienceTargetingTags(context, audienceTags);
 
-        final CECustomEventNative.CENativeAd ceNativeAd = new CECustomEventNative.CENativeAd(context, new com.intowow.sdk.NativeAd(context, placementId), customEventNativeListener);
+        final CECustomEventNative.CENativeAd ceNativeAd = new CECustomEventNative.CENativeAd(context, new com.intowow.sdk.NativeAd(context), customEventNativeListener, placementId);
         ceNativeAd.addExtra(TITLE_KEY, defaultTitle);
         ceNativeAd.addExtra(MAINTEXT_KEY, defaultMainText);
         ceNativeAd.addExtra(CTATEXT_KEY, defaultCTA);
@@ -136,6 +137,7 @@ public class CECustomEventNative extends CustomEventNative {
         private final Context mContext;
         private final com.intowow.sdk.NativeAd mNativeAd;
         private final CustomEventNativeListener mCustomEventNativeListener;
+        private final String mPlacementId;
 
         private final Map<String, Object> mExtras;
 
@@ -143,16 +145,21 @@ public class CECustomEventNative extends CustomEventNative {
 
         CENativeAd(final Context context,
                    final com.intowow.sdk.NativeAd nativeAd,
-                   final CustomEventNativeListener customEventNativeListener) {
+                   final CustomEventNativeListener customEventNativeListener,
+                   final String placementId) {
             mContext = context;
             mNativeAd = nativeAd;
             mCustomEventNativeListener = customEventNativeListener;
+            mPlacementId = placementId;
             mExtras = new HashMap<String, Object>();
         }
 
         void loadAd() {
             mNativeAd.setAdListener(this);
-            mNativeAd.loadAd(DEFAULT_TIMEOUT_MILLIS);
+            RequestInfo requestInfo = new RequestInfo();
+            requestInfo.setPlacement(mPlacementId);
+            requestInfo.setTimeout(DEFAULT_TIMEOUT_MILLIS);
+            mNativeAd.loadAd(requestInfo);
         }
 
         /**

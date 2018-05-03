@@ -15,6 +15,7 @@ import com.intowow.sdk.AdError;
 import com.intowow.sdk.AdListener;
 import com.intowow.sdk.DisplayAd;
 import com.intowow.sdk.I2WAPI;
+import com.intowow.sdk.RequestInfo;
 import com.mopub.common.DataKeys;
 import com.mopub.common.util.Views;
 
@@ -88,9 +89,12 @@ public class CECustomEventCard extends CustomEventBanner implements AdListener {
             mDisplayAd.destroy();
         }
 
-        mDisplayAd = new DisplayAd(context, placementId, null);
+        mDisplayAd = new DisplayAd(context);
         mDisplayAd.setAdListener(this);
-        mDisplayAd.loadAd(DEFAULT_TIMEOUT_MILLIS);
+        RequestInfo requestInfo = new RequestInfo();
+        requestInfo.setPlacement(placementId);
+        requestInfo.setTimeout(DEFAULT_TIMEOUT_MILLIS);
+        mDisplayAd.loadAd(requestInfo);
     }
 
     @Override
@@ -311,7 +315,7 @@ public class CECustomEventCard extends CustomEventBanner implements AdListener {
             }
         }
 
-        displayAd.resize(newAdWidth);
+        displayAd.resize(new com.intowow.sdk.CEAdSize(context, newAdWidth, newAdHeight));
 
         View adView = displayAd.getView();
         ViewGroup.LayoutParams adViewLayoutParams = adView.getLayoutParams();

@@ -24,6 +24,12 @@ The custom event is under folder 'app/src/main/java/com/mopub/mobileads' and 'ap
 
 ## CHANGELOG
 
+#### Version 5 (2018-05-11)
+
+#### Features
+* Refine MoPub custom events
+
+
 #### Version 4 (2018-01-05)
 
 #### Features

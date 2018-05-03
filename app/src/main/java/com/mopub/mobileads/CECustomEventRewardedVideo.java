@@ -9,6 +9,7 @@ import android.util.Log;
 import com.intowow.sdk.Ad;
 import com.intowow.sdk.AdError;
 import com.intowow.sdk.I2WAPI;
+import com.intowow.sdk.RequestInfo;
 import com.intowow.sdk.RewardedVideoAd;
 import com.mopub.common.BaseLifecycleListener;
 import com.mopub.common.LifecycleListener;
@@ -121,13 +122,16 @@ public class CECustomEventRewardedVideo extends CustomEventRewardedVideo impleme
                 mRewardedVideoAd.destroy();
             }
 
-            mRewardedVideoAd = new RewardedVideoAd(activity, placementId);
+            mRewardedVideoAd = new RewardedVideoAd(activity);
 
             //	you can close the interstitial ad while user engaging the ad
             //
             mRewardedVideoAd.setAutoCloseWhenEngaged(mAutoCloseWhenEngaged);
             mRewardedVideoAd.setAdListener(this);
-            mRewardedVideoAd.loadAd(DEFAULT_TIMEOUT_MILLIS);
+            RequestInfo requestInfo = new RequestInfo();
+            requestInfo.setPlacement(placementId);
+            requestInfo.setTimeout(DEFAULT_TIMEOUT_MILLIS);
+            mRewardedVideoAd.loadAd(requestInfo);
         }
     }
 
