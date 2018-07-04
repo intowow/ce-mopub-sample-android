@@ -24,6 +24,10 @@ The custom event is under folder 'app/src/main/java/com/mopub/mobileads' and 'ap
 
 ## CHANGELOG
 
+#### Version 6 (2018-07-06)
+* The Mopub custom event demo app will change to non-test mode when load rewarded video
+
+
 #### Version 5 (2018-05-11)
 
 #### Features

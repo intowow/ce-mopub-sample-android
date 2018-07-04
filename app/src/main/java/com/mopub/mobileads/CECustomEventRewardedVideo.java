@@ -86,7 +86,7 @@ public class CECustomEventRewardedVideo extends CustomEventRewardedVideo impleme
             return false;
         }
 
-        I2WAPI.init(launcherActivity, false, false);
+        I2WAPI.init(launcherActivity);
 
         // Get audience tags
         List<String> audienceTags = getAudienceTags(localExtras, serverExtras);
